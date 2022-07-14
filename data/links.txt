@@ -1,2 +1,30 @@
-https://stackoverflow.com/questions/25863101/python-urllib-urlopen-not-working
-https://stackoverflow.com/questions/6343330/importing-a-long-list-of-constants-to-a-python-file
+INFORMATIVE https://www.washingtonpost.com/world/pigeon-racing-in-iraq-pricey-birds-obsessive-owners-and-alas-stone-throwing-bandits/2019/02/26/6006a720-22f1-11e9-ba08-caf4ff5a3433_story.html
+INFORMATIVE https://thedispatch.com/p/giuliani-to-senator-try-to-just-slow
+INFORMATIVE https://www.nytimes.com/2019/03/19/health/postpartum-depression-drug.html
+INFORMATIVE https://www.washingtonpost.com/national/2019/03/19/0d0e6d8c-4a97-11e9-b79a-961983b7e0cd_story.html
+INFORMATIVE https://nypost.com/2020/09/23/aoc-calls-for-city-state-tax-hikes-to-fund-nyc-schools/
+INFORMATIVE https://thehill.com/homenews/senate/517218-tillis-signals-support-for-trump-mcconnell-decision-to-fill-court-vacancy/
+INFORMATIVE https://reason.com/2019/02/26/michigan-may-stop-police-from-seizing-pr/
+INFORMATIVE https://www.forbes.com/sites/sarahhansen/2020/08/13/the-coronavirus-recession-has-been-worse-for-families-with-kids-ny-fed-finds/#54874173111d
+INFORMATIVE https://www.npr.org/2020/07/29/894799516/pending-postal-service-changes-could-delay-mail-and-deliveries-advocates-warn
+INFORMATIVE https://www.cnbc.com/2020/08/18/usps-chief-louis-dejoy-to-face-more-scrutiny-in-senate-testimony-friday.html
+QUESTIONABLE https://nypost.com/2022/05/15/alleged-buffalo-shooter-allegedly-wrote-waukesha-vics-name-on-gun/
+QUESTIONABLE https://www.theguardian.com/us-news/2020/oct/21/amy-coney-barrett-people-of-praise-trauma-abuse?CMP=share_btn_tw
+QUESTIONABLE https://www.politico.com/news/magazine/2020/08/19/interview-stuart-stevens-republican-case-against-trump-397918
+QUESTIONABLE https://www.theatlantic.com/ideas/archive/2022/02/biden-russia-putin-ukraine/622909/
+QUESTIONABLE https://www.newsweek.com/congress-should-apply-public-accommodation-laws-big-tech-opinion-1608038
+QUESTIONABLE https://www.vox.com/2019/2/26/18241737/trump-north-korea-kim-moon-nuclear-deal
+QUESTIONABLE https://www.bloomberg.com/news/articles/2021-06-09/it-s-not-a-gulag-russia-says-of-plan-to-put-prisoners-to-work
+QUESTIONABLE https://www.politico.com/news/magazine/2021/06/26/derek-chauvin-sentencing-496428
+QUESTIONABLE https://www.prageru.com/video/trophies-are-for-winning
+QUESTIONABLE https://www.forbes.com/sites/stephaniesarkis/2019/02/26/gender-bias-impacts-communication-and-leadership/?sh=6fe84f5277ef
+MISINFORMATION https://www.npr.org/2022/01/18/1073428376/supreme-court-justices-arent-scorpions-but-not-happy-campers-either
+MISINFORMATION https://www.alternet.org/2018/09/michael-moore-details-why-he-fears-trump-may-be-last-president-united-states/
+MISINFORMATION https://www.naturalnews.com/2022-03-10-pfizers-own-documents-prove-they-knew-covid-vaccines-not-safe-mrna-nanoparticles.html
+MISINFORMATION https://thefederalist.com/2022/01/13/if-the-republican-party-refuses-to-learn-from-the-trump-era-winning-in-2022-will-mean-nothing/
+MISINFORMATION https://www.palmerreport.com/analysis/sold-off-asset-key-timing-trump/16829/
+MISINFORMATION https://www.infowars.com/flashback-kamala-harris-laughs-about-murdering-trump/
+MISINFORMATION https://www.thegatewaypundit.com/2022/01/breaking-corrupt-unconstitutional-jan-6-committee-releases-text-messages-showing-hannity-encouraging-mcenany-no-stolen-election-talk/
+MISINFORMATION https://www.wonkette.com/its-time-for-talkin-gay-with-rachel-maddow-and-mayor-pete
+MISINFORMATION https://www.palmerreport.com/analysis/start-the-nuremberg-trials/31037/
+MISINFORMATION https://www.thedailybeast.com/wait-a-secondivanka-fing-trump-says-americans-prefer-to-own-their-own-money?ref=home
