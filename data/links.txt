@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/25863101/python-urllib-urlopen-not-working
+https://stackoverflow.com/questions/6343330/importing-a-long-list-of-constants-to-a-python-file
