@@ -2,6 +2,7 @@ LINK_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\links.txt"
 TEXT_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\text.txt"
 
 UNIQUE_SPLITTER = "@@@"
+DEPTH = 30
 
 #(reliability, bias)
 
