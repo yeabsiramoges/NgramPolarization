@@ -8,14 +8,8 @@ with open(CONGRESS_TWITTER_ACCOUNTS_FILE_PATH, "r", encoding="utf-8", errors="re
         official_data = official.split(",")
         twitter_account = official_data[1].replace("https://twitter.com/", "")
 
-        shell_command = "python " + CLI_PY_PATH + " --username " + twitter_account
-        output_stream = os.popen(shell_command)
+        shell_command = "python " + CLI_PY_PATH + " --username " + twitter_account + " -o tweets.csv --csv"
 
-        try:
-            congress_tweets_file = open("tweets.txt", "x",encoding='utf-8', errors='replace')
-        except FileExistsError:
-            print("Files already exist")
-
-        congress_tweets_file = open("tweets.txt", "a",encoding='utf-8', errors='replace')
-        output_stream.read()
+        os.system(shell_command)
+        
 officials.close()

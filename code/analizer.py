@@ -13,13 +13,14 @@ nltk.download('vader_lexicon')
 
 INFORMATIVE_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\informative.txt"
 MISINFORMATION_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\misinformation.txt"
+SNOPES_ARTICLE_LIST = r"C:\Users\user\Documents\NGramPolarization\data\Snopes\snopes.tsv"
 
 TEXT_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\text.txt"
 UNIQUE_SPLITTER = "@@@"
 
 DEPTH = 30
 
-def analizer(file_path, wrangle, plot):
+def article_analizer(file_path, wrangle, plot):
     #open corpus text file
     with open(file_path,"r",encoding='utf-8', errors='replace') as file:
         for line in file:
@@ -113,5 +114,13 @@ def analizer(file_path, wrangle, plot):
                     
                 for ngram in dfs:
                     dfs[ngram].to_csv(f"{ngram}.csv")
+
+def snopes_analizer():
+    with open(SNOPES_ARTICLE_LIST, "r", encoding="utf-8", errors="replace") as articles:
+        for article in articles:
+            data = article.split("	")
+            
+            quality = "INFORMATIVE" if data[0] == "true" else "MISINFORMATION"
+            text = data[3]
 
 analizer(TEXT_FILE_PATH, False, False)
