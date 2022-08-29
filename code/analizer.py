@@ -123,4 +123,41 @@ def snopes_analizer():
             quality = "INFORMATIVE" if data[0] == "true" else "MISINFORMATION"
             text = data[3]
 
-analizer(TEXT_FILE_PATH, False, False)
+            
+            #text cleanup
+            regex = "[" + re.sub("\.", "",string.punctuation) + "]"
+
+            text = re.sub('<.*>','', text)
+            text = re.sub(regex, "", text)
+
+            #getting words
+            tokenized = text.split()
+
+            bigrams = ngrams(tokenized, 2)
+            trigrams = ngrams(tokenized, 3)
+
+            #counting bigrams
+            bi_grams_freq = collections.Counter(bigrams)
+            tri_grams_freq = collections.Counter(trigrams)
+            
+            #try to create file
+            try:
+                bigrams_file = open("bigrams.txt", "x",encoding='utf-8', errors='replace')
+                trigrams_file = open("trigrams.txt", "x",encoding='utf-8', errors='replace')
+            except FileExistsError:
+                print("Files already exist")
+
+            #add to any existing data in file
+            bigrams_file = open("bigrams.txt", "a",encoding='utf-8', errors='replace')
+            trigrams_file = open("trigrams.txt", "a",encoding='utf-8', errors='replace')
+            
+            bigrams_list = bi_grams_freq.most_common(DEPTH)
+            trigrams_list = tri_grams_freq.most_common(DEPTH)
+
+            for bigram in bigrams_list:
+                bigrams_file.write(str(bigram)+", "+quality+"\n")
+            for trigram in trigrams_list:
+                trigrams_file.write(str(bigram)+", "+quality+"\n")
+
+
+snopes_analizer()
