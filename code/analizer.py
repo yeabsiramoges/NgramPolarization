@@ -1,3 +1,4 @@
+from operator import indexOf
 from tkinter.tix import TEXT
 import pandas as pd
 from nltk import ngrams, Text
@@ -8,12 +9,14 @@ import collections
 import re
 import matplotlib.pyplot as plt
 import requests
+from Bigram import Bigram
 
 nltk.download('vader_lexicon')
 
 INFORMATIVE_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\informative.txt"
 MISINFORMATION_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\misinformation.txt"
 SNOPES_ARTICLE_LIST = r"C:\Users\user\Documents\NGramPolarization\data\Snopes\snopes.tsv"
+BIGRAMS_LIST = r"C:\Users\user\Documents\NGramPolarization\code\bigrams.csv"
 
 TEXT_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\text.txt"
 UNIQUE_SPLITTER = "@@@"
@@ -160,3 +163,41 @@ def snopes_analizer():
                 trigrams_file.write(str(bigram)+", "+quality+"\n")
 
 #snopes_analizer()
+
+def count_instances():
+    with open(BIGRAMS_LIST, "r", encoding="utf-8", errors="replace") as bigrams:
+        ngram_list = []
+
+        try:
+            mle_file = open("mle.csv", "x",encoding='utf-8', errors='replace')
+        except FileExistsError:
+            print("File already exist")
+        
+        for bigram in bigrams:
+            data = bigram.split(",")
+            bigram_string, frequency, classification = data
+            
+            ngram = Bigram(bigram_string)
+
+            if (ngram in ngram_list):
+                print("editing")
+                index = ngram_list.indexOf(ngram)
+                if ("MISINFORMATION" in classification):
+                    ngram_list[index].increment_misinformation_count(int(frequency))
+                else:
+                    print("here")
+                    ngram_list[index].increment_informative_count(int(frequency))
+            else:
+                if ("MISINFORMATION" in classification):
+                    ngram.increment_misinformation_count(int(frequency))
+                else:
+                    ngram.increment_informative_count(int(frequency))
+
+                ngram_list.append(ngram)
+            print(ngram.maximum_likelihood_estimator(), ngram.get_informative_count(), ngram.get_misinformation_count())
+            mle_file = open("mle.csv", "a",encoding='utf-8', errors='replace')
+            mle_file.write(ngram.get_csv_formatting())
+        
+        mle_file.close()
+
+count_instances()
