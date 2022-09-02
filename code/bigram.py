@@ -21,3 +21,6 @@ class Bigram:
 
     def compare_to(self, other):
         return self.get_bigram_string() == other.get_bigram_string()
+
+    def maximum_likelihood_estimator(self):
+        return self.get_misinformation_count() / (self.get_informative_count() + self.get_misinformation_count())

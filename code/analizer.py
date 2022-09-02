@@ -158,3 +158,5 @@ def snopes_analizer():
                 bigrams_file.write(str(bigram)+", "+quality+"\n")
             for trigram in trigrams_list:
                 trigrams_file.write(str(bigram)+", "+quality+"\n")
+
+#snopes_analizer()
