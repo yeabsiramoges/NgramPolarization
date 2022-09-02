@@ -69,3 +69,5 @@ def parse_twitter_accounts():
 
     officials.close()
 
+def parse_bigrams():
+    pass
