@@ -1,4 +1,12 @@
+import json
+from json import JSONEncoder
+
 class Bigram():
+    '''
+    Bigram class used to create and track the existence of bigrams in both the 
+    political leaning classification as well as the informative classification.
+    Currenly supplies MLE calculation on a running basis.
+    '''
     def __init__(self, bigram_string):
         self.bigram_string = bigram_string
         self.misinformation_count = 0
@@ -26,7 +34,11 @@ class Bigram():
         return self.get_bigram_string() == other.get_bigram_string()
 
     def maximum_likelihood_estimator(self):
-        return self.get_misinformation_count() / (self.get_informative_count() + self.get_misinformation_count())
+        return self.get_misinformation_count() / (self.get_total_count())
     
     def get_csv_formatting(self):
-        return self.get_bigram_string()  + "," + str(self.get_total_count()) + "," + str(self.maximum_likelihood_estimator()) + "\n"
+        return self.get_bigram_string()  + "," + str(self.get_total_count()) + "," + str(self.maximum_likelihood_estimator()) +"\n"
+
+class BigramEncoder(JSONEncoder):
+    def default(self, o):
+        return o.__dict__

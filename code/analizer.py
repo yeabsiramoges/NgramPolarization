@@ -1,3 +1,4 @@
+import csv
 from operator import indexOf
 from tkinter.tix import TEXT
 import pandas as pd
@@ -10,6 +11,9 @@ import re
 import matplotlib.pyplot as plt
 import requests
 from Bigram import Bigram
+import json
+
+from Bigram import BigramEncoder
 
 nltk.download('vader_lexicon')
 
@@ -200,4 +204,65 @@ def count_instances():
         
         mle_file.close()
 
-count_instances()
+def mle_calculator(bigram_file):
+    mle_list = {}
+    encoded = {}
+    with open(bigram_file,"r",encoding='utf-8', errors='replace') as file:
+        for line in file:
+            bigram_string, freq, value = line.split(",")
+            new_bigram = Bigram(bigram_string)
+            if bigram_string not in mle_list.keys():
+                mle_list[bigram_string] = new_bigram
+            else:
+                if value == "MISINFORMATION":
+                    mle_list[bigram_string].increment_misinformation_count(int(freq))
+                else:
+                    mle_list[bigram_string].increment_informative_count(int(freq))
+    for mle in mle_list.keys():
+        print(mle_list[mle].get_csv_formatting())
+        encoded[mle] = mle_list[mle].get_csv_formatting()
+    return encoded
+
+
+
+#count_instances()
+#mle = mle_calculator(BIGRAMS_LIST)
+#with open('convert.txt', 'w') as convert_file:
+#     convert_file.write(json.dumps(mle))
+
+def spread_out(file):
+    with open(file,"r",encoding='utf-8', errors='replace') as file:
+        count_mis = 0
+        count_inf = 0
+        for line in file:
+            bigram_string, freq, value = line.split(",")
+            for i in range(int(freq)):
+                print(bigram_string, "MISINFORMATION" in value)
+                if "MISINFORMATION" in value:
+                    if count_mis <= 100000:
+                        file_name = "main_directory/misinformation/" + str(count_mis) + ".txt"
+                    else:
+                        file_name = "test_directory/misinformation/" + str(count_mis) + ".txt"
+                    try:
+                        misinformation = open(file_name, "x",encoding='utf-8', errors='replace')
+                    except:
+                        print("File already exists")
+                    misinformation = open(file_name, "a",encoding='utf-8', errors='replace')
+                    misinformation.write(bigram_string)
+                    count_mis+=1
+                    misinformation.close()
+                else:
+                    if count_inf <= 100000:
+                        file_name = "main_directory/informative/" + str(count_mis) + ".txt"
+                    else:
+                        file_name = "test_directory/informative/" + str(count_mis) + ".txt"
+                    try:
+                        informative = open(file_name, "x",encoding='utf-8', errors='replace')
+                    except:
+                        print("File already exists")
+                    informative = open(file_name, "a",encoding='utf-8', errors='replace')
+                    informative.write(bigram_string)
+                    count_inf+=1
+                    informative.close()
+
+spread_out(BIGRAMS_LIST)
