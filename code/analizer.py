@@ -1,26 +1,31 @@
-import csv
-from operator import indexOf
-from tkinter.tix import TEXT
 import pandas as pd
-from nltk import ngrams, Text
 import nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
+from nltk import ngrams, Text
+from nltk.stem import WordNetLemmatizer
 import string
 import collections
 import re
 import matplotlib.pyplot as plt
 import requests
 from Bigram import Bigram
-import json
+import os
 
 from Bigram import BigramEncoder
 
 nltk.download('vader_lexicon')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
 
 INFORMATIVE_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\informative.txt"
 MISINFORMATION_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\misinformation.txt"
 SNOPES_ARTICLE_LIST = r"C:\Users\user\Documents\NGramPolarization\data\Snopes\snopes.tsv"
 BIGRAMS_LIST = r"C:\Users\user\Documents\NGramPolarization\code\bigrams.csv"
+BIGRAMS_2 = r'C:\Users\user\Documents\NGramPolarization\bigrams_ordered_2.csv'
+BIGRAMS_1 = r'C:\Users\user\Documents\NGramPolarization\code\bigrams_ordered.csv'
+
+FINAL_B = r'C:\Users\user\Documents\NGramPolarization\final_bigrams_ordered.csv'
+FINAL_T = r'C:\Users\user\Documents\NGramPolarization\final_trigrams_ordered.csv'
 
 TEXT_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\text.txt"
 UNIQUE_SPLITTER = "@@@"
@@ -265,4 +270,70 @@ def spread_out(file):
                     count_inf+=1
                     informative.close()
 
-spread_out(BIGRAMS_LIST)
+def tag_conditional(tagged):
+    if len(tagged) == 2:
+        first_word, first_tag = tagged[0]
+        second_word, second_tag = tagged[1]
+        writable_tags = ["NN", "NNS", "NNP", "NNPS"]
+        neutral_tags = ["IN", "DT", "TO", "VBZ"]
+        return {
+            'neutral': first_tag in neutral_tags and second_tag in neutral_tags,
+            'writable':first_tag in writable_tags and second_tag in writable_tags,
+            'ngram': first_word + " " + second_word
+        }
+    else:
+        first_word, first_tag = tagged[0]
+        second_word, second_tag = tagged[1]
+        third_word, third_tag = tagged[1]
+        writable_tags = ["NN", "NNS", "NNP", "NNPS"]
+        neutral_tags = ["IN", "DT", "TO", "VBZ"]
+        return {
+            'neutral': first_tag in neutral_tags and second_tag in neutral_tags and third_tag in neutral_tags,
+            'writable':first_tag in writable_tags and second_tag in writable_tags and third_tag in writable_tags,
+            'ngram': first_word + " " + second_word + " " + third_word
+        }
+
+def clean_up(file, output, bounds, error_bound):
+    if os.path.exists(output):
+        os.remove(output)
+    else:
+        print("The file does not exist") 
+    
+    with open(file,"r",encoding='utf-8', errors='replace') as input_file:
+        with open(output, "w",encoding='utf-8', errors='replace') as output_file: 
+            for line in input_file:
+                try:
+                    ngram,inf_count,mis_count,total_app,mis_freq = line.split(",")
+
+                    tokens = nltk.word_tokenize(ngram)
+                    tagged = nltk.pos_tag(tokens)
+
+                    conditional_dict = tag_conditional(tagged)
+
+                    print(tagged, conditional_dict['writable'])
+
+                    if conditional_dict['writable']:
+                        original_mis_freq = mis_freq
+                        lower, upper = bounds
+                        lower_found = False
+                        upper_found = False
+
+                        mis_freq = "%.0f%%" % (100 * float(mis_freq))
+                        new_csv = conditional_dict['ngram']+","+inf_count+","+mis_count+","+total_app+","+mis_freq+"\n"
+
+                        output_file.write(new_csv)
+
+                        if original_mis_freq > lower - error_bound and original_mis_freq < lower + error_bound and not lower_found:
+                            output_file.write("__________NEUTRAL____________") 
+                            lower_found = True
+
+                        if original_mis_freq > upper - error_bound and original_mis_freq < upper + error_bound and not upper_found:
+                            output_file.write("__________NEUTRAL____________")
+                            upper_found = True
+                except:
+                    continue
+
+
+#clean_up(FINAL_B, "finalb.csv", (.4, .6), .2)
+#clean_up(FINAL_T, "finalt.csv", (.4, .6), .2)
+clean_up(BIGRAMS_2, "alternate.csv", (.4, .6), .2)
