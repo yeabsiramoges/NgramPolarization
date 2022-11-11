@@ -1,17 +1,27 @@
-LINK_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\links.txt"
-TEXT_FILE_PATH = r"C:\Users\user\Documents\NGramPolarization\data\text.txt"
+# Ad Fontes Chart Settings
 
-UNIQUE_SPLITTER = "@@@"
-DEPTH = 30
+# Political Ranges
+POLITICAL_BIAS_TOTAL_RANGE = (-42.0, 42.0)
 
-#(reliability, bias)
+MOST_EXTREME_LEFT = (-42.0,-30.0)
+HYPER_PARTISAN_LEFT = (-30.0,-18.0)
+SKEWS_LEFT = (-18.0,-6.0)
+BALANCED_BIAS = (-6.0,0)
+SKEWS_RIGHT = (6.0,18.0)
+HYPER_PARTISAN_RIGHT = (18.0,30.0)
+MOST_EXTREME_RIGHT = (30.0,42.0)
 
-#most reliable sources i.e informative and neutral
-WASHINGTON_POST_WEIGHT = (62.33, 0)
-AP_NEWS_WEIGHT = (60.25, -0.25)
 
-#reliability issues i.e misinformation
+# Reliability Ranges
+RELIABILITY_TOTAL_RANGE = (0.0, 64.0)
 
-#biased left
+ORIGINAL_FACT_REPORTING = (56.0,64.0)
+FACT_REPORTING = (48.0,56.0)
+COMPLEX_ANALYSIS = (40.0,48.0)
+ANALYSIS  = (32.0,40.0)
+OPINION = (24.0,32.0)
+INCOMPLETE_STORY = (16.0,24.0)
+MISLEADING = (8.0,6.0)
+INNACURATE = (0.0,8.0)
 
-#biased right
+# Overall Ranges
