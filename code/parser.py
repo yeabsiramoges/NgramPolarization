@@ -12,8 +12,7 @@ def retreive_links(url):
     
     urls = []
     for link in soup.find_all('a'):
-        print(link.get("href"))
-        if "://" in str(link.get('href')):
+        if "://" in str(link.get('href')) or "www" in str(link.get('href')):
             urls.append(link.get('href'))
     
     return urls
@@ -48,7 +47,14 @@ def extract_domain(url):
     domain = urlparse(url).netloc
     return domain
 
-total_links = []
-total_links.extend(retreive_links("https://www.cnn.com/us"))
-total_links.extend(retreive_links("https://www.foxnews.com/"))
-print(parse_text(links))
+def retreive_adfontes_links(base_link):
+    final_links = []
+    for page in range(1,9):
+        page_link = base_link
+        if page != 1:
+            page_link += str(page) + "/"
+        retreived_links = retreive_links(page_link)
+        for link in retreived_links:
+            if "bias-and-reliability" in link:
+                final_links.append(link)
+    return final_links
