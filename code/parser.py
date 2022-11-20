@@ -3,7 +3,6 @@ from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import requests
 
-
 links = ["http://news.bbc.co.uk/2/hi/health/2284783.stm"]
 
 def retreive_links(url):
@@ -48,8 +47,11 @@ def extract_domain(url):
     return domain
 
 def retreive_adfontes_links(base_link):
+    count = 0
     final_links = []
+    print("Initializing link list.")
     for page in range(1,9):
+        print(f"Reading from page {page}")
         page_link = base_link
         if page != 1:
             page_link += str(page) + "/"
@@ -57,4 +59,8 @@ def retreive_adfontes_links(base_link):
         for link in retreived_links:
             if "bias-and-reliability" in link:
                 final_links.append(link)
+                print(f"Retreived link {count}")
+                count += 1
     return final_links
+
+        

@@ -1,6 +1,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from parser import *
 import numpy as np
+from media_analysis import *
 
 documents = ["I'd like an apple", 
             "An apple a day keeps the doctor away", 
@@ -56,5 +57,9 @@ adfontes_base_link = "https://adfontesmedia.com/rankings-by-individual-news-sour
 
 adfontes_links = retreive_adfontes_links(adfontes_base_link)
 
-adfontes_text = parse_text(adfontes_links)
+read_range = adfontes_links[0:5]
+adfontes_text = parse_text(read_range)
+print(read_range)
+print(len(adfontes_text))
 print(adfontes_text)
+print(generate_bias_dict(adfontes_text))
