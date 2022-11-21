@@ -1,7 +1,8 @@
+import requests
+
+from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from urllib.parse import urlparse
-from bs4 import BeautifulSoup
-import requests
 
 def retreive_links(url):
     reqs = requests.get(url)

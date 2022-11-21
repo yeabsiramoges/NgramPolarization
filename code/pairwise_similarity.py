@@ -1,8 +1,9 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
-from parser import *
 import numpy as np
+
+from sklearn.feature_extraction.text import TfidfVectorizer
 from media_analysis import *
 from data_file_generator import *
+from parser import *
 
 documents = ["I'd like an apple", 
             "An apple a day keeps the doctor away", 
