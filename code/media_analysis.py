@@ -31,13 +31,28 @@ def reliability_tag(reliability_score):
         raise ValueError(f"Reliability score {reliability_score} out of range.")
     return tag
 
-def generate_bias_dict(adfontes_text):
+def generate_bias_dict(links, adfontes_text):
+    def extract_name(link):
+        '''
+        Link: Adfontes Url
+
+        Takes the link and split it by backslash. From there, the part of the link with the name of the 
+        media is taken and the -bias-and-reliability got taken out.
+        '''
+        return link.split('/')[3].replace('-bias-and-reliability','')
+
     bias_dict = {}
-    bias_scores = []
-    for text in adfontes_text:
+    for link, text in zip(links, adfontes_text):
         text = text.replace("\n", " ")
+
         bias_score = re.search(r'Bias: -?(\d+\.+\d)', text).group(1)
         reliability_score = re.search(r'Reliability: -?(\d+\.+\d)', text).group(1)
-        print(bias_score, reliability_score)
-        bias_scores.append((bias_tag(bias_score), reliability_tag(reliability_score)))
-    return bias_scores
+
+        media_name = extract_name(link)
+
+        print(media_name, bias_score, reliability_score)
+        if media_name in bias_dict:
+            raise KeyError("Key already in dict")
+        else:
+            bias_dict[media_name] = (bias_tag(bias_score), reliability_tag(reliability_score))
+    return bias_dict
