@@ -3,8 +3,6 @@ from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import requests
 
-links = ["http://news.bbc.co.uk/2/hi/health/2284783.stm"]
-
 def retreive_links(url):
     reqs = requests.get(url)
     soup = BeautifulSoup(reqs.text, 'html.parser')

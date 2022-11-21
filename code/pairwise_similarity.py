@@ -2,6 +2,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from parser import *
 import numpy as np
 from media_analysis import *
+from data_file_generator import *
 
 documents = ["I'd like an apple", 
             "An apple a day keeps the doctor away", 
@@ -62,4 +63,8 @@ adfontes_text = parse_text(read_range)
 print(read_range)
 print(len(adfontes_text))
 print(adfontes_text)
-print(generate_bias_dict(read_range, adfontes_text))
+bias_dict = generate_bias_dict(read_range, adfontes_text)
+print(bias_dict)
+
+generate_csv(read_range, adfontes_text)
+generate_json(bias_dict)

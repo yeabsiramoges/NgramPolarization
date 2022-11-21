@@ -25,3 +25,11 @@ MISLEADING = (8.0,6.0)
 INNACURATE = (0.0,8.0)
 
 # Overall Ranges
+
+# File Paths
+
+# CSV
+ADFONTES_CSV_FILE = r"C:\Users\user\Documents\NGramPolarization\data\adfontes_data.csv"
+
+# JSON
+ADFONTES_JSON_FILE = r"C:\Users\user\Documents\NGramPolarization\data\adfontes_dict.json"
